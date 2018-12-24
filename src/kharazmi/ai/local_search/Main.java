@@ -13,7 +13,7 @@ public class Main {
         }
 
         for (int i = 0; i< Configurations.CHESS_RANDOM_GENERATION; i++) {
-            chess_boards[i].printBoardInline(i+1);
+            chess_boards[i].printBoard(i+1);
         }
 //        new ChessBoard().printBoardInline();
 //        System.out.println(queens);

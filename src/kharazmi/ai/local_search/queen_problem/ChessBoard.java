@@ -22,19 +22,37 @@ public class ChessBoard {
         }
     }
 
-    public void printBoardInline(int order) {
+    public void printQueens(int order) {
         System.out.println("***** random chess board "+order+" ***** ");
         System.out.print("*** ");
         for (int i=0; i<Configurations.CHESS_SIZE; i++) {
-            System.out.print(" "+getBoard()[i].getRow()+" ");
+            System.out.print(" "+getQueens()[i].getRow()+" ");
         }
         System.out.print(" ***");
         System.out.print("\n");
         System.out.println("********************************");
+        System.out.println("h = "+Heuristic.attakingPairs(getQueens()));
         System.out.print("\n");
     }
 
-    public Queen[] getBoard() {
+    public void printBoard(int order) {
+        System.out.println("*** random chess board "+order+" *** ");
+        for (int i=0; i<Configurations.CHESS_SIZE; i++) {
+            for (int j=0; j<Configurations.CHESS_SIZE; j++) {
+                if (i == getQueens()[j].getRow()) {
+                    System.out.print(" # ");
+                } else {
+                    System.out.print(" - ");
+                }
+            }
+            System.out.print("\n");
+        }
+        System.out.println("****************************");
+        System.out.println("h = "+Heuristic.attakingPairs(getQueens()));
+        System.out.print("\n");
+    }
+
+    public Queen[] getQueens() {
         return board;
     }
 
