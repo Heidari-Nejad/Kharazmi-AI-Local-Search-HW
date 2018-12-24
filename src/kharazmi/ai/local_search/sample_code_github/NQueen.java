@@ -2,6 +2,7 @@ package kharazmi.ai.local_search.sample_code_github;
 
 /**
  * Created by hosseyn on 12/23/2018.
+ *
  */
 //Class for N-queens Problem
 public class

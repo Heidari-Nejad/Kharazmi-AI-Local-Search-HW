@@ -1,6 +1,8 @@
 package kharazmi.ai.local_search;
 
 import kharazmi.ai.local_search.queen_problem.ChessBoard;
+import kharazmi.ai.local_search.queen_problem.Heuristic;
+import kharazmi.ai.local_search.queen_problem.NQueenProblemSolver;
 
 public class Main {
 
@@ -14,7 +16,17 @@ public class Main {
 
         for (int i = 0; i< Configurations.CHESS_RANDOM_GENERATION; i++) {
             chess_boards[i].printBoard(i+1);
+            while (true) {
+                NQueenProblemSolver solver = new NQueenProblemSolver(chess_boards[i]);
+                chess_boards[i].printBoard(i+1);
+                if(Heuristic.attackingPairs(chess_boards[i].getQueens()) == 0) {
+                    System.out.println("$$$$$$$$$$$$$$$ problem solved $$$$$$$$$$$$$$$");
+                    break;
+                }
+            }
+            System.out.print("\n");
         }
+
 //        new ChessBoard().printBoardInline();
 //        System.out.println(queens);
 //
