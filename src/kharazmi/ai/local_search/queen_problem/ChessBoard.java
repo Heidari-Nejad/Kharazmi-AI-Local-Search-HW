@@ -31,7 +31,7 @@ public class ChessBoard {
         System.out.print(" ***");
         System.out.print("\n");
         System.out.println("********************************");
-        System.out.println("h = "+Heuristic.attakingPairs(getQueens()));
+        System.out.println("h = "+Heuristic.attackingPairs(getQueens()));
         System.out.print("\n");
     }
 
@@ -48,7 +48,7 @@ public class ChessBoard {
             System.out.print("\n");
         }
         System.out.println("****************************");
-        System.out.println("h = "+Heuristic.attakingPairs(getQueens()));
+        System.out.println("attacking pairs = "+Heuristic.attackingPairs(getQueens()));
         System.out.print("\n");
     }
 
