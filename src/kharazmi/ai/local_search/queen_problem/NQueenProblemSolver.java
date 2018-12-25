@@ -72,7 +72,7 @@ public class NQueenProblemSolver {
         }
     }
 
-    private Neighbour getNeighbour(int col, int row) {
+    public Neighbour getNeighbour(int col, int row) {
         for(int i=0; i<Configurations.CHESS_NEIGHBOURS; i++) {
             if(neighbours[i].getColumn() == col && neighbours[i].getRow() == row) {
                 return neighbours[i];

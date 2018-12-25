@@ -4,6 +4,9 @@ import kharazmi.ai.local_search.queen_problem.ChessBoard;
 import kharazmi.ai.local_search.queen_problem.Heuristic;
 import kharazmi.ai.local_search.queen_problem.NQueenProblemSolver;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,37 +18,21 @@ public class Main {
         }
 
         for (int i = 0; i< Configurations.CHESS_RANDOM_GENERATION; i++) {
-            chess_boards[i].printBoard(i+1);
+            if(Configurations.TRACE_MODE) chess_boards[i].printBoard(i+1);
+            Statistics stats = new Statistics(Configurations.PROBLEM_8_QUEENS, Configurations.HILL_CLIMBING_STEEPEST_ASCENT);
             while (true) {
                 NQueenProblemSolver solver = new NQueenProblemSolver(chess_boards[i]);
-                chess_boards[i].printBoard(i+1);
+                if(Configurations.TRACE_MODE) chess_boards[i].printBoardWithNeighbours(i+1, solver);
                 if(Heuristic.attackingPairs(chess_boards[i].getQueens()) == 0) {
-                    System.out.println("$$$$$$$$$$$$$$$ problem solved $$$$$$$$$$$$$$$");
+                    if(Configurations.TRACE_MODE) System.out.println("$$$$$$$$$$$$$$$ problem solved $$$$$$$$$$$$$$$");
+                    stats.step_cost++;
                     break;
                 }
             }
+            stats.printResults();
             System.out.print("\n");
         }
 
-//        new ChessBoard().printBoardInline();
-//        System.out.println(queens);
-//
-//        System.out.println("conflict lists:");
-//        for (int i=0; i<8; i++) {
-//            Integer me = queens.get(i);
-//            for (int j=i+1; j<8; j++) {
-//                Integer neighbor = queens.get(j);
-//                if(me == neighbor) {
-//                    System.out.println("col:"+i+" and col:"+j+" are in the same row.");
-//                }
-//                if(me-(j-i) > 0 && neighbor == (me-(j-i))) {
-//                    System.out.println("col:"+i+" and col:"+j+" are in the same diameter (upper).");
-//                }
-//                if(me+(j-i) < 8 && neighbor == (me+(j-i))) {
-//                    System.out.println("col:"+i+" and col:"+j+" are in the same diameter (lower).");
-//                }
-//            }
-//        }
 //        System.out.println("find heuristic::"+HillClimbingRandomRestart.findHeuristic(queenList));
 //        System.out.println("print state::"+HillClimbingRandomRestart.generateBoard());
 //        System.out.println("print state::"+HillClimbingRandomRestart.nextBoard(queenList));
