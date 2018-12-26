@@ -2,6 +2,7 @@ package kharazmi.ai.local_search;
 
 /**
  * Created by hosseyn on 12/24/2018.
+ *
  */
 public class Configurations {
     public static boolean TRACE_MODE = true ;

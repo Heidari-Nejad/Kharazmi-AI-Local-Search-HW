@@ -14,13 +14,16 @@ public class NQueenProblemSolver {
     private ChessBoard chess_board;
     private ArrayList<Neighbour> best_neighbours;
 
-    public NQueenProblemSolver(ChessBoard board) {
+    public NQueenProblemSolver(ChessBoard board, int order) {
         chess_board = board;
         generateNeighbours();
         neighbourValueComputing();
+        printNeighboursInline();
         bestNeighboursResolver();
         updateChessBoard();
+        if(Configurations.TRACE_MODE) ChessBoard.printBoardWithNeighbours(order+1, this);
     }
+
     public void generateNeighbours() {
         neighbours = new Neighbour[Configurations.CHESS_NEIGHBOURS];
         int h = 0;
@@ -54,22 +57,24 @@ public class NQueenProblemSolver {
                 best_value = neighbours[i].getValue();
             }
         }
-//        System.out.println(" best value: "+best_value);
+        if (Configurations.TRACE_MODE) System.out.println(">> best value: "+best_value);
         for(int i=0; i<Configurations.CHESS_NEIGHBOURS; i++){
             if(best_value == neighbours[i].getValue()) {
-                best_neighbours.add(new Neighbour(neighbours[i].getRow(), neighbours[i].getColumn()));
+                if(Configurations.TRACE_MODE) System.out.println(">> best neighbour added -> col:"+neighbours[i].getColumn()+" , row:"+neighbours[i].getRow()+" , value:"+neighbours[i].getValue());
+                best_neighbours.add(new Neighbour(neighbours[i].getRow(), neighbours[i].getColumn(), neighbours[i].getValue()));
             }
         }
     }
 
+    // update queens and neighbours array
+    // old queen must be a neighbour now, best neighbour now is a queen
     public void updateChessBoard() {
         Neighbour rand_best = best_neighbours.get(new Random().nextInt(best_neighbours.size()));
-        System.out.println("random best neighbour -> col:"+rand_best.getColumn()+" , row:"+rand_best.getRow());
-        for(int i=0; i<Configurations.CHESS_SIZE; i++) {
-            if(chess_board.getQueens()[i].getColumn() == rand_best.getColumn()) {
-                chess_board.getQueens()[i].setRow(rand_best.getRow());
-            }
-        }
+        if(Configurations.TRACE_MODE) System.out.println("random best neighbour -> col:"+rand_best.getColumn()+" , row:"+rand_best.getRow()+" , value:"+rand_best.getValue());
+        int old_queen_row = chess_board.getQueens()[rand_best.getColumn()].getRow();
+        chess_board.getQueens()[rand_best.getColumn()].setRow(rand_best.getRow());
+        getNeighbour(rand_best.getColumn(), rand_best.getRow()).setRow(old_queen_row);
+        neighbourValueComputing();
     }
 
     public Neighbour getNeighbour(int col, int row) {
@@ -78,11 +83,21 @@ public class NQueenProblemSolver {
                 return neighbours[i];
             }
         }
-        return neighbours[0];
+        return new Neighbour(row, col, -1);
+    }
+
+    public void printNeighboursInline() {
+        if (Configurations.TRACE_MODE) System.out.println(">> neighbours: ");
+        for(int i=0; i<Configurations.CHESS_NEIGHBOURS; i++) {
+            if (Configurations.TRACE_MODE) System.out.print(" "+neighbours[i].getColumn()+":"+neighbours[i].getRow()+":"+neighbours[i].getValue());
+        }
     }
 
     public Neighbour[] getNeighbours() {
         return neighbours;
     }
 
+    public ChessBoard getChessBoard() {
+        return chess_board;
+    }
 }

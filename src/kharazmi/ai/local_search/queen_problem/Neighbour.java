@@ -14,6 +14,12 @@ public class Neighbour {
         this.column = column;
     }
 
+    public Neighbour(int row, int column, int value) {
+        this.row = row;
+        this.column = column;
+        this.value = value;
+    }
+
     public int getRow() {
         return row;
     }
@@ -28,6 +34,10 @@ public class Neighbour {
 
     public void setValue(int val) {
         this.value = val;
+    }
+
+    public void setRow(int rw) {
+        this.row = rw;
     }
 
 }

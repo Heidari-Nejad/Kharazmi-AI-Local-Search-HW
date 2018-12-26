@@ -38,9 +38,9 @@ public class ChessBoard {
 
     public void printBoard(int order) {
         System.out.println("*** random chess board "+order+" *** ");
-        for (int i=0; i<Configurations.CHESS_SIZE; i++) {
-            for (int j=0; j<Configurations.CHESS_SIZE; j++) {
-                if (i == getQueens()[j].getRow()) {
+        for (int row=0; row<Configurations.CHESS_SIZE; row++) {
+            for (int col=0; col<Configurations.CHESS_SIZE; col++) {
+                if (row == getQueens()[col].getRow()) {
                     System.out.print(" # ");
                 } else {
                     System.out.print(" - ");
@@ -52,21 +52,20 @@ public class ChessBoard {
         System.out.println("attacking pairs = "+Heuristic.attackingPairs(getQueens()));
     }
 
-    public void printBoardWithNeighbours(int order, NQueenProblemSolver solver) {
+    public static void printBoardWithNeighbours(int order, NQueenProblemSolver solver) {
         System.out.println("*** random chess board "+order+" *** ");
-        for (int i=0; i<Configurations.CHESS_SIZE; i++) {
-            for (int j=0; j<Configurations.CHESS_SIZE; j++) {
-                if (i == getQueens()[j].getRow()) {
+        for (int row=0; row<Configurations.CHESS_SIZE; row++) {
+            for (int col=0; col<Configurations.CHESS_SIZE; col++) {
+                if (row == solver.getChessBoard().getQueens()[col].getRow()) {
                     System.out.print(" # ");
                 } else {
-                    System.out.print(" "+solver.getNeighbour(i,j).getValue()+" ");
+                    System.out.print(" "+solver.getNeighbour(col, row).getValue()+" ");
                 }
             }
             System.out.print("\n");
         }
         System.out.println("****************************");
-        System.out.println("attacking pairs = "+Heuristic.attackingPairs(getQueens()));
-        System.out.print("\n");
+        System.out.println("attacking pairs = "+Heuristic.attackingPairs(solver.getChessBoard().getQueens()));
     }
 
     public Queen[] getQueens() {
