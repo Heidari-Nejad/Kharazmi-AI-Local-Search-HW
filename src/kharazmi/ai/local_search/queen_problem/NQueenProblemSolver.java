@@ -3,6 +3,7 @@ package kharazmi.ai.local_search.queen_problem;
 import kharazmi.ai.local_search.Configurations;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -10,17 +11,20 @@ import java.util.Random;
  *
  */
 public class NQueenProblemSolver {
+    public String solvable;
     private Neighbour[] neighbours;
     private ChessBoard chess_board;
     private ArrayList<Neighbour> best_neighbours;
 
     public NQueenProblemSolver(ChessBoard board, int order) {
+        solvable = Configurations.PROBLEM_SOLVING;
         chess_board = board;
         generateNeighbours();
         neighbourValueComputing();
-        printNeighboursInline();
         bestNeighboursResolver();
-        updateChessBoard();
+//        printNeighboursInline();
+        if(Objects.equals(solvable, Configurations.PROBLEM_SOLVING)) updateChessBoard();
+        System.out.print("\n");
         if(Configurations.TRACE_MODE) ChessBoard.printBoardWithNeighbours(order+1, this);
     }
 
@@ -57,6 +61,8 @@ public class NQueenProblemSolver {
                 best_value = neighbours[i].getValue();
             }
         }
+        if(Heuristic.attackingPairs(chess_board.getQueens()) == 0) solvable = Configurations.PROBLEM_SOLVED;
+        else if(Heuristic.attackingPairs(chess_board.getQueens()) <= best_value) solvable = Configurations.PROBLEM_UNSOLVED;
         if (Configurations.TRACE_MODE) System.out.println(">> best value: "+best_value);
         for(int i=0; i<Configurations.CHESS_NEIGHBOURS; i++){
             if(best_value == neighbours[i].getValue()) {

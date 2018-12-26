@@ -7,11 +7,15 @@ package kharazmi.ai.local_search;
 public class Configurations {
     public static boolean TRACE_MODE = true ;
     public static int CHESS_SIZE = 8 ;
-    public static int CHESS_RANDOM_GENERATION = 12 ;
+    public static int CHESS_RANDOM_GENERATION = 120 ;
     public static int CHESS_NEIGHBOURS = Configurations.CHESS_SIZE*(Configurations.CHESS_SIZE-1);
 
     public static String PROBLEM_8_QUEENS = "8 Queens";
     public static String PROBLEM_8_PUZZLES = "8 Puzzles";
+
+    public static String PROBLEM_SOLVING = "solving...";
+    public static String PROBLEM_SOLVED = "solved";
+    public static String PROBLEM_UNSOLVED = "unsolved";
 
     public static String HILL_CLIMBING_STOCHASTIC = "stochastic";
     public static String SIMULATED_ANNEALING = "simulated_annealing";
