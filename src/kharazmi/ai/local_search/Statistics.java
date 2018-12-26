@@ -23,7 +23,8 @@ public class Statistics {
         System.out.println("%%%%   random problmes = "+problem_count+"   %%%%");
         System.out.println("%%%%   heuristic = "+heuristic+"   %%%%");
         System.out.println("%%%%   time cost = "+time_cost+" seconds   %%%%");
-        System.out.println("%%%%   number of steps = "+step_cost+"   %%%%");
+        System.out.println("%%%%   Total cost(steps) = "+step_cost+"   %%%%");
+        System.out.println("%%%%   average cost(steps) per problem = "+((float)step_cost/Configurations.CHESS_RANDOM_GENERATION)+"   %%%%");
         System.out.println("%%%%   number of solved problems = "+solved_problems+"   %%%%");
         System.out.println("%%%%   number of unsolved problems = "+unsolved_problems+"   %%%%");
         float percentage = (float) solved_problems/(solved_problems+unsolved_problems)*100;

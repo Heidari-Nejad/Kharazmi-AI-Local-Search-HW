@@ -24,7 +24,7 @@ public class NQueenProblemSolver {
         bestNeighboursResolver();
 //        printNeighboursInline();
         if(Objects.equals(solvable, Configurations.PROBLEM_SOLVING)) updateChessBoard();
-        System.out.print("\n");
+        if(Configurations.TRACE_MODE) System.out.print("\n");
         if(Configurations.TRACE_MODE) ChessBoard.printBoardWithNeighbours(order+1, this);
     }
 
@@ -106,4 +106,6 @@ public class NQueenProblemSolver {
     public ChessBoard getChessBoard() {
         return chess_board;
     }
+
 }
+
