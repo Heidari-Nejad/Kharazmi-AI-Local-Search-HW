@@ -45,7 +45,7 @@ public class Main {
                 puzzle_boards[i] = new PuzzleBoard();
             }
             stats = new Statistics(Configurations.PROBLEM_8_PUZZLES, Configurations.HILL_CLIMBING_STEEPEST_ASCENT, Configurations.PUZZLE_RANDOM_GENERATION);
-            for (int i = 0; i< Configurations.CHESS_RANDOM_GENERATION; i++) {
+            for (int i = 0; i< Configurations.PUZZLE_RANDOM_GENERATION; i++) {
                 if(Configurations.TRACE_MODE) puzzle_boards[i].printBoardInline(i+1);
                 if(Configurations.TRACE_MODE) puzzle_boards[i].printBoard(i+1);
 //            while (true) {

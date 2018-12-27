@@ -5,7 +5,6 @@ import kharazmi.ai.local_search.Configurations;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by hosseyn on 12/24/2018.
@@ -26,7 +25,13 @@ public class PuzzleBoard {
         for (int i = 0; i < Configurations.PUZZLE_PIECES; i++) states.add(i);
         Collections.shuffle(states);
         for(int i=0; i< Configurations.PUZZLE_PIECES; i++) {
-            tiles.add(new Tile(states.get(i)));
+            tiles.add(
+                new Tile(
+                        states.get(i),
+                        i%Configurations.PUZZLE_SQUARE_SIDE,
+                        i/Configurations.PUZZLE_SQUARE_SIDE
+                )
+            );
         }
     }
 
@@ -34,7 +39,7 @@ public class PuzzleBoard {
         System.out.println("$$$$$$$$$$$ Puzzle Board "+order+" $$$$$$$$$$$");
         for(int i = 0; i<Configurations.PUZZLE_PIECES; i++) {
             if(tiles.get(i).getState() == 0) System.out.print(" - ");
-            else System.out.print(" "+tiles.get(i).getState()+" ");
+            else System.out.print(" "+tiles.get(i).getRow()+":"+tiles.get(i).getColumn()+":"+tiles.get(i).getState()+" ");
         }
         System.out.println("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     }
