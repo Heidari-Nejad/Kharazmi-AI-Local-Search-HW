@@ -46,20 +46,20 @@ public class Main {
             }
             stats = new Statistics(Configurations.PROBLEM_8_PUZZLES, Configurations.HILL_CLIMBING_STEEPEST_ASCENT, Configurations.PUZZLE_RANDOM_GENERATION);
             for (int i = 0; i< Configurations.PUZZLE_RANDOM_GENERATION; i++) {
-                if(Configurations.TRACE_MODE) puzzle_boards[i].printBoardInline(i+1);
-                if(Configurations.TRACE_MODE) puzzle_boards[i].printBoard(i+1);
-//            while (true) {
-//                NPuzzleProblemSolver solver = new NPuzzleProblemSolver(puzzle_boards[i], i);
-//                stats.step_cost++;
-//                if(!solver.solvable.equals(Configurations.PROBLEM_SOLVING)) {
-//                    System.out.print("\n");
-//                    if(Configurations.TRACE_MODE) System.out.println("$$$$$$$$$$$$$$$ problem "+solver.solvable+" $$$$$$$$$$$$$$$");
-//                    System.out.print("\n\n");
-//                    if(solver.solvable.equals(Configurations.PROBLEM_SOLVED)) stats.solved_problems++;
-//                    else if(solver.solvable.equals(Configurations.PROBLEM_UNSOLVED)) stats.unsolved_problems++;
-//                    break;
-//                }
-//                }
+//                if(Configurations.TRACE_MODE) puzzle_boards[i].printBoardInline(i+1);
+                if(Configurations.TRACE_MODE) PuzzleBoard.printBoard(puzzle_boards[i].getTiles(), i+1);
+                while (true) {
+                    NPuzzleProblemSolver solver = new NPuzzleProblemSolver(puzzle_boards[i], i+1);
+                    stats.step_cost++;
+                    if(!solver.solvable.equals(Configurations.PROBLEM_SOLVING)) {
+                        System.out.print("\n");
+                        if(Configurations.TRACE_MODE) System.out.println("$$$$$$$$$$$$$$$ problem "+solver.solvable+" $$$$$$$$$$$$$$$");
+                        System.out.print("\n\n");
+                        if(solver.solvable.equals(Configurations.PROBLEM_SOLVED)) stats.solved_problems++;
+                        else if(solver.solvable.equals(Configurations.PROBLEM_UNSOLVED)) stats.unsolved_problems++;
+                        break;
+                    }
+                }
             }
             System.out.print("\n");
             stats.printResults();

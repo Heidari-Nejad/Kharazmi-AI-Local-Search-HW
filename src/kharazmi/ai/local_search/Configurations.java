@@ -13,7 +13,7 @@ public class Configurations {
     public static int PUZZLE_PIECES = 9;
     public static int PUZZLE_SQUARE_SIDE = 3;
     public static int CHESS_RANDOM_GENERATION = 1000 ;
-    public static int PUZZLE_RANDOM_GENERATION = 12 ;
+    public static int PUZZLE_RANDOM_GENERATION = 5000 ;
     public static int CHESS_NEIGHBOURS = Configurations.CHESS_SIZE*(Configurations.CHESS_SIZE-1);
 
     public static String PROBLEM_8_QUEENS = "8 Queens";
